@@ -24,6 +24,28 @@ export default class Dishdetail extends Component {
         );
 
     }
+    renderComments(comments){
+        return(
+            <ul className="list-unstyled">
+                {comments.map(comment => {
+                    return (
+                        <li key={comment.id}>
+                            <p>{comment.comment}</p>
+                            <p>
+                                -- {comment.author} ,{" "}
+                                {new Intl.DateTimeFormat("en-US", {
+                                    year: "numeric",
+                                    month: "short",
+                                    day: "2-digit"
+                                }).format(new Date(Date.parse(comment.date)))}
+                            </p>
+                        </li>
+                    );
+                })}
+            </ul>
+
+        )
+    }
     
     render() {
         if(this.props.dish != null){
@@ -35,23 +57,7 @@ export default class Dishdetail extends Component {
                         </div> 
                         <div className="col-12 col-md-5 m-1">
                             <h4>Comments</h4>
-                            <ul className="list-unstyled">
-                                {this.props.dish.comments.map(comment => {
-                                    return (
-                                        <li key={comment.id}>
-                                            <p>{comment.comment}</p>
-                                            <p>
-                                                -- {comment.author} ,{" "}
-                                                {new Intl.DateTimeFormat("en-US", {
-                                                    year: "numeric",
-                                                    month: "short",
-                                                    day: "2-digit"
-                                                }).format(new Date(Date.parse(comment.date)))}
-                                            </p>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
+                            {this.renderComments(this.props.dish.comments)}
 
                         </div> 
                     </div>
