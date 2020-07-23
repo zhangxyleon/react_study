@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import {
     Card, CardImg, CardText, CardBody,
     CardTitle
@@ -43,7 +43,7 @@ function renderComments({comments}){
 
 const DishDetail = (props) =>{
     console.log("Dishdetail Component render is invokd")
-    if(this.props.dish != null){
+    if(props.dish != null){
         return (
             <div className = "container">
                 <div className="row">
@@ -52,7 +52,7 @@ const DishDetail = (props) =>{
                     </div> 
                     <div className="col-12 col-md-5 m-1">
                         <h4>Comments</h4>
-                        <renderComments comments = {props.dish.comments}/>>
+                        <renderComments comments = {props.dish.comments}/>
                     </div> 
                 </div>
             </div>
